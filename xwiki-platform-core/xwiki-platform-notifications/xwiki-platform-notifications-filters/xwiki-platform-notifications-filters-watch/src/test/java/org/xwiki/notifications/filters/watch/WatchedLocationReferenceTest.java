@@ -254,7 +254,7 @@ class WatchedLocationReferenceTest
         when(this.stateComputer.isLocationWatched(filterPreferences, this.entityReference)).thenReturn(false);
         when(this.stateComputer.isLocationWatchedWithAllEventTypes(filterPreferences, this.entityReference))
             .thenReturn(false);
-        assertEquals(WatchedEntityReference.WatchedStatus.NOT_WATCHED,
+        assertEquals(WatchedEntityReference.WatchedStatus.NOT_SET,
             this.watchedLocationReference.getWatchedStatus(userReference));
 
         verify(this.stateComputer).isLocationWatched(filterPreferences, this.entityReference);
