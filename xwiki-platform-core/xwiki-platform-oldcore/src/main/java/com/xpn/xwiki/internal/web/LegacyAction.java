@@ -42,5 +42,6 @@ public interface LegacyAction
      * @param servletResponse the response passed to the servlet
      * @throws Exception when the action produces an unexptected error
      */
+    @Deprecated(since = "17-jakarta")
     void execute(HttpServletRequest servletRequest, HttpServletResponse servletResponse) throws Exception;
 }

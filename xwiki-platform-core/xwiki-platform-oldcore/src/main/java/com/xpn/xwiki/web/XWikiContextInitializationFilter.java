@@ -103,6 +103,7 @@ public class XWikiContextInitializationFilter implements Filter
      * @param response the response
      * @throws ServletException if the initialization fails
      */
+    @Deprecated(since = "17-jakarta")
     protected void initializeXWikiContext(ServletRequest request, ServletResponse response) throws ServletException
     {
         try {

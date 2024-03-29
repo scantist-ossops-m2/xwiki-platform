@@ -32,6 +32,7 @@ import javax.servlet.http.HttpServletRequest;
  * @version $Id$
  * @since 2.0M3
  */
+@Deprecated(since = "17-jakarta")
 public class SetThreadNameServletRequestListener implements ServletRequestListener
 {
     /** The name of the servlet request attribute holding the original name of the processing thread. */

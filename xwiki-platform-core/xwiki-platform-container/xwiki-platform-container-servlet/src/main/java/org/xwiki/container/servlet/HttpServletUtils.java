@@ -79,6 +79,7 @@ public final class HttpServletUtils
      * @param servletRequest the servlet request input
      * @return the URL as close as possible from what the client used
      */
+    @Deprecated(since = "17-jakarta")
     public static URL getSourceURL(HttpServletRequest servletRequest)
     {
         URL baseURL = getSourceBaseURL(servletRequest);
@@ -110,6 +111,7 @@ public final class HttpServletUtils
      * @param servletRequest the servlet request input
      * @return the URL as close as possible from what the client used
      */
+    @Deprecated(since = "17-jakarta")
     public static URL getSourceBaseURL(HttpServletRequest servletRequest)
     {
         StringBuilder builder = new StringBuilder();
@@ -219,6 +221,7 @@ public final class HttpServletUtils
      * @return true if the request explicitly disable getting resources from the cache
      * @since 11.8RC1
      */
+    @Deprecated(since = "17-jakarta")
     public static boolean isCacheReadAllowed(HttpServletRequest request)
     {
         String headerValue = request.getHeader(HEADER_CACHE_CONTROL);

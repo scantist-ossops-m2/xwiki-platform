@@ -32,6 +32,7 @@ import org.xwiki.container.Response;
  *
  * @version $Id$
  */
+@Deprecated(since = "17-jakarta")
 public class ServletResponse implements Response, RedirectResponse
 {
     private HttpServletResponse httpServletResponse;

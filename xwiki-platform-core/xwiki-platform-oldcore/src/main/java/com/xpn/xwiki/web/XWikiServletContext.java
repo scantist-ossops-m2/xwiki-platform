@@ -25,6 +25,7 @@ import java.net.URL;
 
 import javax.servlet.ServletContext;
 
+@Deprecated(since = "17-jakarta")
 public class XWikiServletContext implements XWikiEngineContext
 {
     private ServletContext scontext;

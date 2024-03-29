@@ -83,6 +83,7 @@ public class SavedRequestRestorerFilter implements Filter
     /**
      * Request Wrapper that inserts data from a previous request into the current request.
      */
+    @Deprecated(since = "17-jakarta")
     public static class SavedRequestWrapper extends HttpServletRequestWrapper
     {
         /** The saved request data; may be <code>null</code>, in which case no fallback data is used. */
@@ -224,6 +225,7 @@ public class SavedRequestRestorerFilter implements Filter
      * @return the saved request, if one exists, or <code>null</code>.
      */
     @SuppressWarnings("unchecked")
+    @Deprecated(since = "17-jakarta")
     protected SavedRequest getSavedRequest(HttpServletRequest request)
     {
         // Only do something if the new request contains a Saved Request IDentifier (srid)

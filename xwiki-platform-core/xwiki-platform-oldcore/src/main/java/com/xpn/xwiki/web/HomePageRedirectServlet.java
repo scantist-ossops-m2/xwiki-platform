@@ -31,6 +31,7 @@ import javax.servlet.http.HttpServletResponse;
  * <code>http://localhost:8080/xwiki</code> and be redirected automatically to
  * <code>http://localhost:8080/xwiki/bin/view/Main/</code>.
  */
+@Deprecated(since = "17-jakarta")
 public class HomePageRedirectServlet extends HttpServlet
 {
     /** The address to use as a home page where the users are redirected. */

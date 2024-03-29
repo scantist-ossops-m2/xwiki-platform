@@ -46,6 +46,7 @@ import com.xpn.xwiki.internal.web.LegacyAction;
  * @version $Id$
  * @since 13.0
  */
+@Deprecated(since = "17-jakarta")
 public class LegacyActionServlet extends HttpServlet
 {
     private static final long serialVersionUID = 1L;

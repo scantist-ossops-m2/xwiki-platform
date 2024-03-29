@@ -27,6 +27,7 @@ import org.xwiki.container.Request;
 
 import javax.servlet.http.HttpServletRequest;
 
+@Deprecated(since = "17-jakarta")
 public class ServletRequest implements Request
 {
     private HttpServletRequest httpServletRequest;

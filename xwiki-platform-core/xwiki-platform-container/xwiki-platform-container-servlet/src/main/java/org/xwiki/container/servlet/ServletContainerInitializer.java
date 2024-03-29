@@ -28,14 +28,18 @@ import org.xwiki.component.annotation.Role;
 @Role
 public interface ServletContainerInitializer
 {
+    @Deprecated(since = "17-jakarta")
     void initializeRequest(HttpServletRequest request, Object xwikiContext)
         throws ServletContainerException;
     
+    @Deprecated(since = "17-jakarta")
     void initializeRequest(HttpServletRequest request)
         throws ServletContainerException;
 
+    @Deprecated(since = "17-jakarta")
     void initializeResponse(HttpServletResponse response);
     
+    @Deprecated(since = "17-jakarta")
     void initializeSession(HttpServletRequest request);
 
     /**

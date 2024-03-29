@@ -42,6 +42,7 @@ import org.xwiki.observation.event.ApplicationStoppedEvent;
  * 
  * @version $Id$
  */
+@Deprecated(since = "17-jakarta")
 public class XWikiServletContextListener implements ServletContextListener
 {
     /**
