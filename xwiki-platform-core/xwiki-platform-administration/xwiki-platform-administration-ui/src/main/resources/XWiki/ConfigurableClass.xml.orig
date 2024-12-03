@@ -238,12 +238,7 @@ $doc.dropPermissions()##
                 #showHeading($appName, $headingShowing)
 
                 {{error}}
-                  #set($escapedObjClassName =
-                    $services.rendering.escape($escapetool.java($objClass.getName()), 'xwiki/2.1'))
-                  #set($translationEscapedAppName =
-                    $services.rendering.escape($escapetool.java($app.getFullName()), 'xwiki/2.1'))
-                  {{translation key="xe.admin.configurable.noObjectOfConfigurationClassFound"
-                    parameters="~"$escapedObjClassName~", ~"$translationEscapedAppName~""/}}
+                  {{translation key="xe.admin.configurable.noObjectOfConfigurationClassFound" parameters="$objClass.getName(), $app.getFullName()"/}}
                 {{/error}}
 
               #else
