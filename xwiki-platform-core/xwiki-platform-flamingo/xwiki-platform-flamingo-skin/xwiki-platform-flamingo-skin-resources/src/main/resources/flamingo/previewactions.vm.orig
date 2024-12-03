@@ -26,10 +26,7 @@
       #end
     #end
   #end
-  ## We use the wiki editor as fallback url since it's the one supposed to work in all conditions.
-  #set ($fallbackUrl = $tdoc.getURL("edit", "editor=wiki&amp;$docvariant"))
-  #getSanitizedURLAttributeValue('form','action',$editorUrl, $fallbackUrl, $finalEditorUrl)
-<form id="backtoedit" class="buttons" action="$finalEditorUrl" method="post">
+<form id="backtoedit" class="buttons" action="$!{escapetool.xml($editorUrl)}" method="post">
   <div>
     #foreach($param in $request.getParameterNames())
       #if(!$param.startsWith('action_'))
