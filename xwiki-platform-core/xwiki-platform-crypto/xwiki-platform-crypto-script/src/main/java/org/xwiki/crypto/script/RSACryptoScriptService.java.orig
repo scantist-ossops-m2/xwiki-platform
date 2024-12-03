@@ -69,7 +69,7 @@ import org.xwiki.script.service.ScriptService;
 /**
  * Script service allowing a user to create keys pairs and issue certificates.
  *
- * @version $Id$
+ * @version $Id: a58993caa3aeaed1fa0c8622c44f4027217b318a $
  * @since 8.4RC1
  */
 @Component
@@ -89,7 +89,7 @@ public class RSACryptoScriptService implements ScriptService
     private KeyPairGenerator keyPairGenerator;
 
     @Inject
-    @Named("SHA256withRSAEncryption")
+    @Named("SHA1withRSAEncryption")
     private SignerFactory signerFactory;
 
     @Inject
