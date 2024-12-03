@@ -241,9 +241,9 @@
   </div>
   <button class="btn btn-danger confirm">$services.localization.render('delete')</button>
   #if("$!{request.xredirect}" != '')
-    #set($cancelUrl = "$request.xredirect")
+    #getSanitizedURLAttributeValue('a','href',$request.xredirect,$doc.getURL(),$cancelUrl)
   #else
-    #set($cancelUrl = $doc.getURL())
+    #set($cancelUrl = $escapetool.xml($doc.getURL()))
   #end
   <a class="btn btn-default cancel" href="$!{escapetool.xml(${cancelUrl})}">$services.localization.render('cancel')</a>
 #end
