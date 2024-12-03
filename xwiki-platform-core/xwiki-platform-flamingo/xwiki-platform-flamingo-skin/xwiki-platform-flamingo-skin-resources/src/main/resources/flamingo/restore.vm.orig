@@ -182,9 +182,9 @@
   </div>
   <button class="btn btn-primary">$services.localization.render('core.restore.confirm.yes')</button>
   #if("$!{request.xredirect}" != '')
-    #getSanitizedURLAttributeValue('a','href',$request.xredirect,$doc.getURL(),$cancelUrl)
+    #set($cancelUrl = "$request.xredirect")
   #else
-    #set($cancelUrl = $escapetool.xml($doc.getURL()))
+    #set($cancelUrl = $doc.getURL())
   #end
-  <a class="btn btn-default" href="$cancelUrl">$services.localization.render('core.restore.confirm.no')</a>
+  <a class="btn btn-default" href="$!{escapetool.xml(${cancelUrl})}">$services.localization.render('core.restore.confirm.no')</a>
 #end
