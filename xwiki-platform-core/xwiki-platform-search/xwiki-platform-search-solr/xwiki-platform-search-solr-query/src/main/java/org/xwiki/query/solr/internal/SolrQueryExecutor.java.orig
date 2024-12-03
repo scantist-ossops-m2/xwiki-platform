@@ -56,7 +56,7 @@ import com.xpn.xwiki.XWikiContext;
  * For now, the result is the direct {@link QueryResponse}, in lack of a more expressive result type than the generic
  * List that the {@link #execute(Query)} method allows.
  * 
- * @version $Id$
+ * @version $Id: a2c407bcbf6ab2abe45ad48bc86895947f30f2b0 $
  * @since 4.3M2
  */
 @Component
@@ -234,34 +234,36 @@ public class SolrQueryExecutor implements QueryExecutor
     protected void filterResponse(QueryResponse response, List<DocumentReference> usersToCheck)
     {
         SolrDocumentList results = response.getResults();
-        long numResults = results.size();
+        long numFound = results.getNumFound();
 
-        results.removeIf(result -> {
-            boolean keep = false;
+        // Since we are modifying the results collection, we need to iterate over its copy.
+        for (SolrDocument result : new ArrayList<SolrDocument>(results)) {
             try {
                 DocumentReference resultDocumentReference = this.solrDocumentReferenceResolver.resolve(result);
 
-                keep = isAllowed(resultDocumentReference, usersToCheck);
+                if (!isAllowed(resultDocumentReference, usersToCheck)) {
+
+                    // Remove the current incompatible result.
+                    results.remove(result);
+
+                    // Decrement the number of results.
+                    numFound--;
+
+                    // FIXME: We should update maxScore as well when removing the top scored item. How do we do that?
+                    // Sorting based on score might be a not so expensive option.
+
+                    // FIXME: What about highlighting, facets and all the other data inside the QueryResponse?
+                }
             } catch (Exception e) {
-                // Don't take any risk of including a result for which we cannot determine the document reference and
-                // thus cannot determine if the given users have access to it or not.
-                this.logger.warn("Removing bad result: {}", result, e);
+                this.logger.warn("Skipping bad result: {}", result, e);
             }
+        }
 
-            // FIXME: We should update maxScore as well when removing the top scored item. How do we do that?
-            // Sorting based on score might be a not so expensive option.
-
-            // FIXME: What about highlighting, facets and all the other data inside the QueryResponse?
-
-            return !keep;
-        });
-
-        long numFilteredResults = numResults - results.size();
-
-        // Update the number of results, excluding the filtered ones.
-        // Lower bound guard for the total number of results.
-        long numFound = Math.max(0, response.getResults().getNumFound() - numFilteredResults);
-
+        // Update the new number of results, excluding the filtered ones.
+        if (numFound < 0) {
+            // Lower bound guard for the total number of results.
+            numFound = 0;
+        }
         results.setNumFound(numFound);
     }
 
